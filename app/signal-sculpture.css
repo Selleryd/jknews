@@ -1,0 +1,84 @@
+.signal-sculpture {
+  --signal-x: 0;
+  --signal-y: 0;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  aspect-ratio: 1200 / 650;
+  overflow: hidden;
+  contain: paint;
+  user-select: none;
+}
+
+.signal-sculpture__aura {
+  position: absolute;
+  inset: 9% 15% 12%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 42% 40%, rgb(87 156 180 / .14), transparent 52%), radial-gradient(ellipse at 65% 70%, rgb(129 98 173 / .13), transparent 57%);
+  filter: blur(24px);
+  opacity: .82;
+  animation: signal-aura 12s ease-in-out infinite;
+}
+
+.signal-sculpture__depth {
+  position: absolute;
+  inset: 0;
+  transform: perspective(1000px) rotateY(calc(var(--signal-x) * 4deg)) rotateX(calc(var(--signal-y) * -3deg)) translate3d(calc(var(--signal-x) * 9px), calc(var(--signal-y) * 6px), 0);
+  transition: transform .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.signal-sculpture__art { display: block; width: 100%; height: 100%; overflow: visible; }
+.signal-sculpture__form { transform-origin: 600px 325px; animation: signal-drift 16s ease-in-out infinite; }
+.signal-sculpture__field { transform-origin: 600px 325px; animation: signal-field 24s ease-in-out infinite; }
+.signal-sculpture__highlight { animation: signal-luminance 9s ease-in-out infinite; }
+.signal-sculpture__satellites { animation: signal-luminance 13s ease-in-out infinite reverse; }
+
+.signal-sculpture__horizon {
+  position: absolute;
+  left: 14%;
+  right: 14%;
+  bottom: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(149 200 211 / .2), rgb(170 161 214 / .16), transparent);
+  transform: scaleX(.85);
+  opacity: .6;
+}
+
+.signal-sculpture[data-awake="false"] .signal-sculpture__aura,
+.signal-sculpture[data-awake="false"] .signal-sculpture__form,
+.signal-sculpture[data-awake="false"] .signal-sculpture__field,
+.signal-sculpture[data-awake="false"] .signal-sculpture__highlight,
+.signal-sculpture[data-awake="false"] .signal-sculpture__satellites { animation-play-state: paused; }
+
+@keyframes signal-drift {
+  0%, 100% { transform: translateY(3px) rotate(-1.6deg) scale(1); }
+  50% { transform: translateY(-7px) rotate(1.6deg) scale(1.025); }
+}
+@keyframes signal-field {
+  0%, 100% { transform: rotate(-2deg) scale(.99); opacity: .7; }
+  50% { transform: rotate(3deg) scale(1.02); opacity: 1; }
+}
+@keyframes signal-aura {
+  0%, 100% { opacity: .62; transform: scale(.97); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+@keyframes signal-luminance {
+  0%, 100% { opacity: .5; }
+  50% { opacity: 1; }
+}
+
+[data-theme="light"] .signal-sculpture__aura { opacity: .55; mix-blend-mode: multiply; }
+[data-theme="light"] .signal-sculpture__art { filter: saturate(.7) brightness(.65); }
+[data-theme="light"] .signal-sculpture__horizon { background: linear-gradient(90deg, transparent, rgb(54 110 131 / .25), rgb(122 101 158 / .2), transparent); }
+
+@media (max-width: 680px) {
+  .signal-sculpture { aspect-ratio: 1.7; }
+  .signal-sculpture__depth { inset: -2% -12%; }
+  .signal-sculpture__aura { inset: 13% 9%; filter: blur(18px); }
+  .signal-sculpture__horizon { bottom: 8%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signal-sculpture *, .signal-sculpture__depth { animation: none !important; transition: none !important; }
+  .signal-sculpture__depth { transform: none; }
+}

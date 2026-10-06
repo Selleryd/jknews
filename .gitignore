@@ -1,0 +1,64 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/.vinext/
+/out/
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+next-env.d.ts
+/dist/
+/.wrangler/
+# Checkout-local execution profile and tool state; never publish them.
+/.sites-runtime/
+/.agents/
+/.codex/
+/outputs/
+/work/
+
+!.env.example
+
+.local-console-dist/
+
+# The owner's desktop management desk stays off GitHub.
+/local-console/
+/Start-Desk.*
+/components/*-console.tsx
+/lib/publisher-api.ts
+/scripts/build-local-console.mjs
+/scripts/package-backend.py
+/tests/owner-bridge.test.mjs
+/BACKEND-SETUP.md
+/GITHUB-PUSH.md
+/BRAIN-OPERATIONS.md
+/Push-to-jknews.sh
+/.openai/hosting.json
