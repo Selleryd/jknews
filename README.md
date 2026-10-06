@@ -2,8 +2,6 @@
 
 OSINT, News, and Important World Announcements.
 
-This repository contains only the compiled public website.
+Website: https://jewknows.app/
 
-Website: https://selleryd.github.io/jknews/
-
-The management dashboard, service source, private configuration and credentials are not part of this upload. Normal Git history is preserved.
+This repository contains only the compiled public website. The management dashboard, service source and credentials stay private. Normal Git history is preserved.
